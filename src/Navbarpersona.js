@@ -8,9 +8,9 @@ function Navbar({ handleLinkClick }) {
         <li><a href="#" onClick={() => handleLinkClick('inicio')}>Inicio</a></li>
         <li><a href="#" onClick={() => handleLinkClick('lista-edificios')}>Edificios</a></li>
         <li><a href="#" onClick={() => handleLinkClick('buscar-unidades')}>Unidades</a></li>
-        <li><a href="#" onClick={() => handleLinkClick('lista-personas')}>Personas</a></li>
-        <li><a href="#" onClick={() => handleLinkClick('agregar-duenio')}>Agregar duenio</a></li>
-        <li><a href="#" onClick={() => handleLinkClick('agregar-inquilino')}>Agregar inquilino</a></li>
+        <li><a href="#" onClick={() => handleLinkClick('agregar-duenio')}>Reclamos</a></li>
+        <li><a href="#" onClick={() => handleLinkClick('agregar-reclamo')}>Generar reclamos</a></li>
+
       </ul>
     </nav>
   );
