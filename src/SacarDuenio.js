@@ -37,16 +37,8 @@ function SacarDuenio() {
       <h2>Sacar Dueño a Unidad</h2>
       <form onSubmit={handleSacarDuenio}>
         <label>
-          ID:
+          IDUnidad:
           <input type="text" value={id} onChange={(e) => setId(e.target.value)} />
-        </label>
-        <label>
-          Piso:
-          <input type="text" value={piso} onChange={(e) => setPiso(e.target.value)} />
-        </label>
-        <label>
-          Número:
-          <input type="text" value={numero} onChange={(e) => setNumero(e.target.value)} />
         </label>
         <label>
           Documento:
