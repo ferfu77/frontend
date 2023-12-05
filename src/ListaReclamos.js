@@ -128,7 +128,7 @@ function ListaReclamos() {
               <td>{reclamo.estado}</td>
               <td>{reclamo.IdReclamo}</td>
               <EliminarReclamo
-                  estado={reclamo.estado}
+                  IdReclamo={reclamo.IdReclamo}
                   eliminarreclamo={eliminarReclamo}
                 />
             </tr>
