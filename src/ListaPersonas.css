@@ -1,6 +1,7 @@
 .lista-personas-container {
   width: 80%;
-  margin: 3920% auto 0; /* Ajusta el margen superior para desplazar el contenido hacia abajo */
+  width: 70%;
+  margin: 5950% auto 0 !important;
 }
 
 table {

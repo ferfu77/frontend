@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import './UnidadesEdificio.css';
 
 function UnidadesPorEdificio() {
   const [codigoEdificio, setCodigoEdificio] = useState('');
   const [unidades, setUnidades] = useState([]);
+  const [mostrarUnidades, setMostrarUnidades] = useState(false);
 
   const obtenerUnidades = () => {
     if (codigoEdificio.trim() !== '') {
@@ -15,11 +17,16 @@ function UnidadesPorEdificio() {
         })
         .then((data) => {
           setUnidades(data);
+          setMostrarUnidades(true); // Mostrar las unidades al obtenerlas
         })
         .catch((error) => {
           console.error("Error al obtener las unidades del edificio", error);
         });
     }
+  };
+
+  const toggleMostrarUnidades = () => {
+    setMostrarUnidades(!mostrarUnidades);
   };
 
   return (
@@ -33,7 +40,7 @@ function UnidadesPorEdificio() {
       />
       <button onClick={obtenerUnidades}>Mostrar Unidades</button>
 
-      {unidades.length > 0 && (
+      {mostrarUnidades && unidades.length > 0 && (
         <table>
           <thead>
             <tr>
