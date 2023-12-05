@@ -7,6 +7,7 @@ import BuscarUnidades from './BuscarUnidades';
 import AgregarDuenio from './AgregarDuenio';
 import AgregarInquilino from './AgregarInquilino';
 import Navbarpersona from './Navbarpersona';
+import ListaReclamos from './ListaReclamos';
 
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
       {isAdmin && currentPage === 'lista-personas' && <ListaPersonas />}
       {isAdmin && currentPage === 'lista-edificios' && <ListaEdificios />}
       {isAdmin && currentPage === 'buscar-unidades' && <BuscarUnidades />}
+      {isAdmin && currentPage === 'lista-reclamos' && <ListaReclamos />}
       {isAdmin && currentPage === 'agregar-duenio' && <AgregarDuenio />}
       {isAdmin && currentPage === 'agregar-inquilino' && <AgregarInquilino />}
     </div>

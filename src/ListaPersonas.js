@@ -62,7 +62,7 @@ function ListaPersonas() {
 
   return (
     <div className="lista-personas-container">
-      <h2>Lista de Usuarios</h2>
+ 
       <BuscarPersona onPersonaEncontrada={handlePersonaEncontrada} />
       {personaEncontrada && (
         <div>
@@ -94,23 +94,24 @@ function ListaPersonas() {
         />
                   <input
           type="text"
-          placeholder="Documento"
-          value={nuevaPersona.documento}
+          placeholder="Mail"
+          value={nuevaPersona.mail}
           onChange={(e) =>
-            setNuevaPersona({ ...nuevaPersona, documento: e.target.value })
+            setNuevaPersona({ ...nuevaPersona, mail: e.target.value })
           }
         />
                   <input
           type="text"
-          placeholder="Documento"
-          value={nuevaPersona.documento}
+          placeholder="Password"
+          value={nuevaPersona.password}
           onChange={(e) =>
-            setNuevaPersona({ ...nuevaPersona, documento: e.target.value })
+            setNuevaPersona({ ...nuevaPersona, password: e.target.value })
           }
         />
         
         <button onClick={guardarNuevaPersona}>Agregar</button>
       </div>
+      <h2>Lista de Usuarios</h2>
       <table>
         <thead>
           <tr>
