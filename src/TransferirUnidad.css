@@ -1,0 +1,43 @@
+.transferir-unidad-container {
+    width: 300px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .transferir-unidad-container h2 {
+    margin-bottom: 20px;
+  }
+  
+  .transferir-unidad-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .transferir-unidad-container label {
+    margin-bottom: 10px;
+  }
+  
+  .transferir-unidad-container input {
+    padding: 8px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .transferir-unidad-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .transferir-unidad-container button:hover {
+    background-color: #0056b3;
+  }
+  

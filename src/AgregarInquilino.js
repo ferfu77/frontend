@@ -6,32 +6,36 @@ function AgregarInquilino() {
   const [piso, setPiso] = useState('');
   const [numero, setNumero] = useState('');
   const [documento, setDocumento] = useState('');
-  const [message, setMessage] = useState('');
+  const [mensaje, setMensaje] = useState('');
   const [error, setError] = useState('');
 
-  const handleAgregarInquilino = (e) => {
+  const handleAgregarInquilino = async (e) => {
     e.preventDefault();
-    setError('');
-    setMessage('');
 
-    fetch(`http://localhost:8080/api/unidades/agregarInquilinoUnidad?id=${id}&piso=${piso}&numero=${numero}&documento=${documento}`)
-      .then((response) => {
-        if (response.ok) {
-          return response.text();
-        }
-        throw new Error('Error al agregar inquilino a la unidad');
-      })
-      .then((data) => {
-        setMessage(data);
-      })
-      .catch((error) => {
-        setError('No se pudo agregar al inquilino a la unidad');
+    try {
+      const response = await fetch(`http://localhost:8080/api/unidades/agregarInquilinoUnidad?id=${id}&piso=${piso}&numero=${numero}&documento=${documento}`, {
+        method: 'POST'
       });
+
+      if (response.ok) {
+        const data = await response.text();
+        setMensaje(data);
+        setError('');
+      } else {
+        const errorMessage = await response.text();
+        setError(errorMessage);
+        setMensaje('');
+      }
+    } catch (error) {
+      console.error('Hubo un error al agregar al inquilino:', error);
+      setError('Hubo un error al agregar al inquilino');
+      setMensaje('');
+    }
   };
 
   return (
     <div className="agregar-inquilino-container">
-      <h2>Agregar Inquilino a la Unidad</h2>
+      <h2>Agregar Inquilino a Unidad</h2>
       <form onSubmit={handleAgregarInquilino}>
         <label>
           ID:
@@ -51,8 +55,11 @@ function AgregarInquilino() {
         </label>
         <button type="submit">Agregar Inquilino</button>
       </form>
-      {message && <p className="success">{message}</p>}
-      {error && <p className="error">{error}</p>}
+
+      
+
+      {mensaje && <p>{mensaje}</p>}
+      {error && <p>{error}</p>}
     </div>
   );
 }

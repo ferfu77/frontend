@@ -12,6 +12,9 @@ function Navbar({ handleLinkClick }) {
         <li><a href="#" onClick={() => handleLinkClick('lista-reclamos')}>Reclamos</a></li>
         <li><a href="#" onClick={() => handleLinkClick('agregar-duenio')}>Agregar duenio</a></li>
         <li><a href="#" onClick={() => handleLinkClick('agregar-inquilino')}>Agregar inquilino</a></li>
+        <li><a href="#" onClick={() => handleLinkClick('transferir-unidad')}>Transferir Unidad </a></li>
+        <li><a href="#" onClick={() => handleLinkClick('sacar-inquilino')}>Sacar Inquilino </a></li>
+        <li><a href="#" onClick={() => handleLinkClick('sacar-duenio')}>Sacar Duenio </a></li>
       </ul>
     </nav>
   );

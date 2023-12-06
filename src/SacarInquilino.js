@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import './SacarDuenio.css';
+import './SacarInquilino.css';
 
-function SacarDuenio() {
+function SacarInquilino() {
   const [idUnidad, setIdUnidad] = useState('');
+  const [documento, setDocumento] = useState('');
   const [mensaje, setMensaje] = useState('');
   const [error, setError] = useState('');
 
   const handleSacarInquilino = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/api/unidades/${idUnidad}/sacarduenio`, {
+      const response = await fetch(`http://localhost:8080/api/unidades/${idUnidad}/sacarinquilino`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -25,21 +26,21 @@ function SacarDuenio() {
         setMensaje('');
       }
     } catch (error) {
-      console.error('Hubo un error al sacar al duenio:', error);
-      setError('Hubo un error al sacar al duenio');
+      console.error('Hubo un error al sacar al inquilino:', error);
+      setError('Hubo un error al sacar al inquilino');
       setMensaje('');
     }
   };
 
   return (
-    <div className="sacar-duenio-container">
-      <h2>Sacar Duenio de Unidad</h2>
+    <div className="sacar-inquilino-container">
+      <h2>Sacar Inquilino de Unidad</h2>
       <form onSubmit={handleSacarInquilino}>
         <label>
           ID de la Unidad:
           <input type="text" value={idUnidad} onChange={(e) => setIdUnidad(e.target.value)} />
         </label>
-        <button type="submit">Sacar Duenio</button>
+        <button type="submit">Sacar Inquilino</button>
       </form>
 
       {mensaje && <p>{mensaje}</p>}
@@ -48,4 +49,4 @@ function SacarDuenio() {
   );
 }
 
-export default SacarDuenio ;
+export default SacarInquilino;

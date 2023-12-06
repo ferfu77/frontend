@@ -9,6 +9,9 @@ import AgregarInquilino from './AgregarInquilino';
 import Navbarpersona from './Navbarpersona';
 import ListaReclamos from './ListaReclamos';
 import GenerarReclamo from './GenerarReclamo';
+import TransferirUnidad from './TransferirUnidad';
+import SacarInquilino from './SacarInquilino';
+import SacarDuenio from './SacarDuenio';
 
 
 function App() {
@@ -89,6 +92,9 @@ function App() {
       {isAdmin && currentPage === 'lista-reclamos' && <ListaReclamos />}
       {isAdmin && currentPage === 'agregar-duenio' && <AgregarDuenio />}
       {isAdmin && currentPage === 'agregar-inquilino' && <AgregarInquilino />}
+      {isAdmin && currentPage === 'transferir-unidad' && <TransferirUnidad />}
+      {isAdmin && currentPage === 'sacar-inquilino' && <SacarInquilino />}
+      {isAdmin && currentPage === 'sacar-duenio' && <SacarDuenio />}
     </div>
   );
 }

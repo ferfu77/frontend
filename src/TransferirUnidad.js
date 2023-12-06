@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import './AgregarDuenio.css';
+import './TransferirUnidad.css';
 
-
-function AgregarDuenio() {
+function TransferirUnidad() {
   const [id, setId] = useState('');
   const [piso, setPiso] = useState('');
   const [numero, setNumero] = useState('');
@@ -10,15 +9,19 @@ function AgregarDuenio() {
   const [mensaje, setMensaje] = useState('');
   const [error, setError] = useState('');
 
-
-
-
-  const handleAgregarDuenio = async (e) => {
-    e.preventDefault();
-
+  const handleTransferirUnidad = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/api/unidades/agregarDuenioUnidad?id=${id}&piso=${piso}&numero=${numero}&documento=${documento}`, {
-        method: 'POST'
+      const response = await fetch('http://localhost:8080/api/unidades/transferirUnidad', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: id,
+          piso: piso,
+          numero: numero,
+          documento: documento,
+        }),
       });
 
       if (response.ok) {
@@ -31,16 +34,16 @@ function AgregarDuenio() {
         setMensaje('');
       }
     } catch (error) {
-      console.error('Hubo un error al agregar el dueño:', error);
-      setError('Hubo un error al agregar el dueño');
+      console.error('Hubo un error al transferir la unidad:', error);
+      setError('Hubo un error al transferir la unidad');
       setMensaje('');
     }
   };
 
   return (
-    <div className="agregar-duenio-container">
-      <h2>Agregar Dueño a Unidad</h2>
-      <form onSubmit={handleAgregarDuenio}>
+    <div className="transferir-unidad-container">
+      <h2>Transferir Unidad</h2>
+      <form onSubmit={handleTransferirUnidad}>
         <label>
           ID:
           <input type="text" value={id} onChange={(e) => setId(e.target.value)} />
@@ -57,10 +60,8 @@ function AgregarDuenio() {
           Documento:
           <input type="text" value={documento} onChange={(e) => setDocumento(e.target.value)} />
         </label>
-        <button type="submit">Agregar Dueño</button>
+        <button type="submit">Transferir Unidad</button>
       </form>
-
-      
 
       {mensaje && <p>{mensaje}</p>}
       {error && <p>{error}</p>}
@@ -68,4 +69,4 @@ function AgregarDuenio() {
   );
 }
 
-export default AgregarDuenio;
+export default TransferirUnidad;
