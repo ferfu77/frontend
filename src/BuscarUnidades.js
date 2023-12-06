@@ -6,6 +6,15 @@ function BuscarUnidades() {
   const [unidades, setUnidades] = useState([]);
   const [codigoEdificio, setCodigoEdificio] = useState('');
   const [error, setError] = useState(null);
+  const [nuevaUnidad, setNuevaUnidad] = useState({
+    piso: '',
+    numero: '',
+    habitado: false,
+    codigoedificio: '',
+    
+    // Agrega más propiedades según la estructura de tu unidad
+  });
+  const [codigoUnidad, setCodigoUnidad] = useState('');
 
   useEffect(() => {
     fetch('http://localhost:8080/api/unidades/listar')
@@ -35,21 +44,84 @@ function BuscarUnidades() {
       });
   };
 
+  const handleCrearUnidad = () => {
+    fetch(`http://localhost:8080/api/unidades/crear?piso=${nuevaUnidad.piso}&numero=${nuevaUnidad.numero}&habitado=${nuevaUnidad.habitado}&codigoedificio=${nuevaUnidad.codigoedificio}`, {
+      method: 'POST',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Manejar la respuesta si es necesario
+        console.log('Unidad creada:', data);
+        // Actualizar la lista de unidades o recargar las unidades
+      })
+      .catch((error) => {
+        console.error('Error al crear la unidad:', error);
+      });
+  };
+
+  const handleEliminarUnidad = (codigo) => {
+    fetch(`http://localhost:8080/api/unidades/eliminar/${codigo}`, {
+      method: 'DELETE',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Unidad eliminada:', data);
+        // Actualizar la lista de unidades o recargar las unidades después de eliminar
+      })
+      .catch((error) => {
+        console.error('Error al eliminar la unidad:', error);
+      });
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setNuevaUnidad({ ...nuevaUnidad, [name]: value });
+  };
+
   return (
     <div className="buscar-unidades-container">
-      <h2>Buscar Unidades</h2>
+      
       <div>
-        <form onSubmit={handleBuscarUnidadPorEdificio}>
-          <input
-            type="text"
-            value={codigoEdificio}
-            onChange={(e) => setCodigoEdificio(e.target.value)}
-            placeholder="Ingrese el código del edificio"
-          />
-          <button type="submit">Buscar</button>
-        </form>
+
         <UnidadesPorEdificio codigoEdificio={codigoEdificio} />
       </div>
+      <div>
+        <h3>Crear Nueva Unidad</h3>
+        <input
+          type="text"
+          name="piso"
+          value={nuevaUnidad.piso}
+          onChange={handleInputChange}
+          placeholder="Piso"
+        />
+        <input
+          type="text"
+          name="numero"
+          value={nuevaUnidad.numero}
+          onChange={handleInputChange}
+          placeholder="Número"
+        />
+
+        <input
+          type="text"
+          name="codigoedificio"
+          value={nuevaUnidad.codigoedificio}
+          onChange={handleInputChange}
+          placeholder="Código del edificio"
+        />
+
+        <button onClick={handleCrearUnidad}>Crear Unidad</button>
+      </div>
+      <h3>Eliminar Unidad</h3>
+        <input
+          type="text"
+          placeholder="Código de la unidad a eliminar"
+          onChange={(e) => {
+            const codigo = e.target.value;
+            setCodigoUnidad(codigo);
+          }}
+        />
+        <button onClick={() => handleEliminarUnidad(codigoUnidad)}>Eliminar Unidad</button>
       <table>
         <thead>
           <tr>
@@ -65,6 +137,8 @@ function BuscarUnidades() {
             {/* Agrega más encabezados según la información de tus unidades */}
           </tr>
         </thead>
+        
+        
         <tbody>
           {unidades.map((unidad) => (
             <tr key={unidad.id}>
@@ -106,6 +180,7 @@ function BuscarUnidades() {
           ))}
         </tbody>
       </table>
+      
       {error && <p className="error-message">{error}</p>}
     </div>
   );
