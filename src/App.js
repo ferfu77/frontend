@@ -8,13 +8,16 @@ import AgregarDuenio from './AgregarDuenio';
 import AgregarInquilino from './AgregarInquilino';
 import Navbarpersona from './Navbarpersona';
 import ListaReclamos from './ListaReclamos';
+import GenerarReclamo from './GenerarReclamo';
 
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentPage, setCurrentPage] = useState('inicio');
+  const [loginMessage, setLoginMessage] = useState('');
   const handleLinkClick = (page) => {
+    console.log("navegando a "+ page)
     setCurrentPage(page);
   };
 
@@ -24,30 +27,49 @@ function App() {
       if (response.ok) {
         const data = await response.text();
         if (data === 'Bienvenido, eres un administrador.') {
+          setLoginMessage('¡Eres un administrador!');
           setIsAdmin(true);
+        } else {
+          setLoginMessage(data);
         }
         setIsLoggedIn(true);
-      } else {
 
+      } else if (response.status === 401) {
+        setLoginMessage('Credenciales inválidas');
+      } else if (response.status === 404) {
+        setLoginMessage('Usuario no encontrado');
+      } else {
+        setLoginMessage('Error al iniciar sesión');
       }
     } catch (error) {
-      // Manejo de errores
+      setLoginMessage('Error al iniciar sesión');
     }
   };
 
   const renderUsuarioComun = () => {
+  
     return (
+      <>
+      <Navbarpersona handleLinkClick={handleLinkClick}/>
+      {currentPage==='inicio' &&
       <div>
         <h1>Página de Usuario Común</h1>
         <p>Contenido para usuarios regulares...</p>
         {/* Agrega aquí cualquier contenido que desees mostrar */}
       </div>
+      }
+      {currentPage === 'lista-personas' && <ListaPersonas />}
+      {currentPage === 'lista-edificios' && <ListaEdificios />}
+      {currentPage === 'buscar-unidades' && <BuscarUnidades />}
+      {currentPage === 'lista-reclamos' && <ListaReclamos />}
+      {currentPage === 'generar-reclamo' && <GenerarReclamo />}
+      </> 
     );
   };
 
   return (
     <div className="App">
-      <Navbarpersona/>
+
       
       
       {isLoggedIn ? (
@@ -57,7 +79,7 @@ function App() {
           renderUsuarioComun()
         )
       ) : (
-        <Login onLogin={handleLogin} />
+        <Login onLogin={handleLogin} message={loginMessage}/>
       )}
 
       

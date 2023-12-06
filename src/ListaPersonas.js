@@ -129,7 +129,6 @@ function ListaPersonas() {
               <td>{persona.mail}</td>
               <td>{persona.password}</td>
               <EliminarPersona
-                  
                   mail={persona.mail}
                   eliminarPersona={eliminarPersona}
                 />
