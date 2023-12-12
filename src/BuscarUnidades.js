@@ -122,7 +122,7 @@ function BuscarUnidades() {
           }}
         />
         <button onClick={() => handleEliminarUnidad(codigoUnidad)}>Eliminar Unidad</button>
-      <table>
+      <table class="table">
         <thead>
           <tr>
             <th>ID</th>

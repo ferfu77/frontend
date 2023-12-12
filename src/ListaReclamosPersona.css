@@ -2,7 +2,6 @@
 .lista-reclamos-container {
     font-family: Arial, sans-serif;
     padding: 20px;
-    max-height: 800px;
   }
   
   /* Estilos para la sección de agregar nuevo reclamo */
@@ -35,12 +34,6 @@
     border-collapse: collapse;
     margin-top: 30px;
   }
-  /* Estilo para los botones en la tabla */
-td button {
-  margin-right: 5px; /* Espacio a la derecha de cada botón */
-  margin-bottom: 5px; /* Espacio en la parte inferior de cada botón */
-}
-
   
   th, td {
     border: 1px solid #ddd;

@@ -5,7 +5,7 @@ import './BuscarReclamo.css';
 import guardarReclamo from './GuardarReclamo';
 import EliminarReclamo from './EliminarReclamo';
 
-function ListaReclamos() {
+function ListaReclamosPersona() {
   const [reclamoEncontrado, setreclamoEncontrado] = useState(null);
   const [reclamos, setreclamos] = useState([]);
   const [nuevoReclamo, setNuevoreclamo] = useState({
@@ -94,7 +94,6 @@ function ListaReclamos() {
             <th>Estado</th>
             <th>Id Reclamo</th>
             <th>Imágenes</th>
-            <th>Estado</th>
             
           </tr>
         </thead>
@@ -120,28 +119,7 @@ function ListaReclamos() {
                   <p>No hay imágenes disponibles para este reclamo.</p>
                 )}
               </td>
-              <td>
-              <td>
-      <button onClick={() => cambiarEstadoReclamo(reclamoConImagenes.reclamo.idReclamo, 'nuevo')}>
-        Nuevo
-      </button>
-      <button onClick={() => cambiarEstadoReclamo(reclamoConImagenes.reclamo.idReclamo, 'abierto')}>
-        Abierto
-      </button>
-      <button onClick={() => cambiarEstadoReclamo(reclamoConImagenes.reclamo.idReclamo, 'enProceso')}>
-        En Proceso
-      </button>
-      <button onClick={() => cambiarEstadoReclamo(reclamoConImagenes.reclamo.idReclamo, 'desestimado')}>
-        Desestimado
-      </button>
-      <button onClick={() => cambiarEstadoReclamo(reclamoConImagenes.reclamo.idReclamo, 'anulado')}>
-        Anulado
-      </button>
-      <button onClick={() => cambiarEstadoReclamo(reclamoConImagenes.reclamo.idReclamo, 'terminado')}>
-        Terminado
-      </button>
-    </td>
-    </td>
+
 
             </tr>
           ))}
@@ -154,4 +132,4 @@ function ListaReclamos() {
   );
 }
 
-export default ListaReclamos;
+export default ListaReclamosPersona;

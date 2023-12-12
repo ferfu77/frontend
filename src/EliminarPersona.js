@@ -1,18 +1,11 @@
 import React from 'react';
 
-const EliminarPersona = ({ documento, mail, eliminarPersona }) => {
-  const handleEliminarClick = () => {
-    eliminarPersona(mail);
-  };
-
+function EliminarPersona({ documento, eliminarPersona }) {
   return (
-    <div className="eliminar-persona-container">
-      <h3>Eliminar Persona</h3>
-      <p><strong>Documento:</strong> {documento}</p>
-      <p><strong>Email:</strong> {mail}</p>
-      <button onClick={handleEliminarClick}>Eliminar</button>
-    </div>
+    <td>
+      <button onClick={() => eliminarPersona(documento)}>Eliminar</button>
+    </td>
   );
-};
+}
 
 export default EliminarPersona;

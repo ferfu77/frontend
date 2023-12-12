@@ -8,6 +8,7 @@ import EliminarPersona from './EliminarPersona';
 function ListaPersonas() {
   const [personaEncontrada, setPersonaEncontrada] = useState(null);
   const [personas, setPersonas] = useState([]);
+  const [personaEliminada, setPersonaEliminada] = useState(false);
   const [nuevaPersona, setNuevaPersona] = useState({
     documento: '',
     nombre: '',
@@ -37,18 +38,19 @@ function ListaPersonas() {
       .catch((error) => {
         console.error("Error al obtener los datos", error);
       });
-  }, []);
+    }, [personaEliminada]);
 
-  const eliminarPersona = async (mail) => {
+  const eliminarPersona = async (documento) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/persona/eliminar/${mail}`, {
+      const response = await fetch(`http://localhost:8080/api/persona/eliminar/${documento}`, {
         method: 'DELETE',
       });
 
       if (response.ok) {
-        const data = await response.text();
-        console.log('Persona eliminada:', data);
-        // Realizar alguna acción adicional después de eliminar la persona, si es necesario
+        setPersonaEliminada(true); // Cambia el estado para mostrar el mensaje de eliminación
+        setTimeout(() => {
+          setPersonaEliminada(false); // Después de unos segundos, oculta el mensaje
+        }, 3000); // Cambia este valor para ajustar la duración del mensaje (en milisegundos)
       } else {
         const errorMessage = await response.text();
         console.error('Error al eliminar persona:', errorMessage);
@@ -62,7 +64,7 @@ function ListaPersonas() {
 
   return (
     <div className="lista-personas-container">
- 
+      {personaEliminada && <div className="mensaje-eliminacion">¡Persona eliminada!</div>} {/* Muestra el mensaje si se eliminó una persona */}
       <BuscarPersona onPersonaEncontrada={handlePersonaEncontrada} />
       {personaEncontrada && (
         <div>
@@ -129,9 +131,9 @@ function ListaPersonas() {
               <td>{persona.mail}</td>
               <td>{persona.password}</td>
               <EliminarPersona
-                  mail={persona.mail}
-                  eliminarPersona={eliminarPersona}
-                />
+      documento={persona.documento}
+      eliminarPersona={eliminarPersona}
+    />
             </tr>
           ))}
         </tbody>

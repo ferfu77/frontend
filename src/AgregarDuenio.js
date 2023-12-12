@@ -10,7 +10,36 @@ function AgregarDuenio() {
   const [mensaje, setMensaje] = useState('');
   const [error, setError] = useState('');
 
+  const handleTransferirUnidad = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/api/unidades/transferirUnidad', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: id,
+          piso: piso,
+          numero: numero,
+          documento: documento,
+        }),
+      });
 
+      if (response.ok) {
+        const data = await response.text();
+        setMensaje(data);
+        setError('');
+      } else {
+        const errorMessage = await response.text();
+        setError(errorMessage);
+        setMensaje('');
+      }
+    } catch (error) {
+      console.error('Hubo un error al transferir la unidad:', error);
+      setError('Hubo un error al transferir la unidad');
+      setMensaje('');
+    }
+  };
 
 
   const handleAgregarDuenio = async (e) => {

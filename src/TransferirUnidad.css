@@ -1,43 +1,67 @@
+/* TransferirUnidad.css */
+
 .transferir-unidad-container {
-    width: 300px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
-  }
-  
-  .transferir-unidad-container h2 {
-    margin-bottom: 20px;
-  }
-  
-  .transferir-unidad-container form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .transferir-unidad-container label {
-    margin-bottom: 10px;
-  }
-  
-  .transferir-unidad-container input {
-    padding: 8px;
-    margin-bottom: 10px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .transferir-unidad-container button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .transferir-unidad-container button:hover {
-    background-color: #0056b3;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%; /* Ajusta el ancho del contenedor según sea necesario */
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.transferir-unidad-container h2 {
+  margin-bottom: 15px;
+}
+
+.transferir-unidad-container form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.transferir-unidad-container label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.transferir-unidad-container input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.transferir-unidad-container button {
+  padding: 8px 12px;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.transferir-unidad-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para separar las tablas */
+.transferir-unidad-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.transferir-unidad-container table th,
+.transferir-unidad-container table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.transferir-unidad-container table th {
+  background-color: #f2f2f2;
+}

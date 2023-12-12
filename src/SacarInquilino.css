@@ -1,43 +1,12 @@
-.sacar-inquilino-container {
-    width: 300px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
-  }
-  
-  .sacar-inquilino-container h2 {
-    margin-bottom: 20px;
-  }
-  
-  .sacar-inquilino-container form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .sacar-inquilino-container label {
-    margin-bottom: 10px;
-  }
-  
-  .sacar-inquilino-container input {
-    padding: 8px;
-    margin-bottom: 10px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .sacar-inquilino-container button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .sacar-inquilino-container button:hover {
-    background-color: #0056b3;
-  }
-  
+.sacar-inquilino-container table {
+  width: 100%; /* O ajusta el ancho según sea necesario */
+  margin-top: 20px; /* Espacio superior entre el formulario y la tabla */
+  text-align: center; /* Para centrar el contenido de la tabla */
+}
+
+/* Opcional: Estilos para las celdas de la tabla */
+.sacar-inquilino-container table td,
+.sacar-inquilino-container table th {
+  padding: 8px;
+  /* Otros estilos según sea necesario */
+}
