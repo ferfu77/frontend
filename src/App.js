@@ -136,8 +136,20 @@ function App() {
     if (isLoggedIn && userEmail && !unidadEncontrada) {
       obtenerUnidadesPorPersona(userEmail)
         .then((unidades) => {
-          // Resto del código sigue igual
-          // ...
+          if (!unidadEncontrada) {
+            obtenerUnidadPorDuenio(userEmail)
+              .then((unidadesDuenio) => {
+                if (unidadesDuenio && unidadesDuenio.length > 0) {
+                  setUnidad(unidadesDuenio);
+                  setUnidadEncontrada(true);
+                } else {
+                  console.log('No se encontró ninguna unidad asociada a este dueño.');
+                }
+              })
+              .catch((error) => {
+                console.error('Error al obtener unidades como dueño:', error);
+              });
+          }
         })
         .catch((error) => {
           console.error('Error al obtener unidades:', error);
